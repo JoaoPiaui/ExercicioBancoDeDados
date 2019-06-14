@@ -84,5 +84,33 @@ WHERE id = @ID";
             comando.ExecuteNonQuery();
             conexao.Close();
         }
+
+        private void AtualizaTabela()
+        {
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = @"";
+            conexao.Open();
+
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = conexao;
+            comando.CommandText = "@SELECT id, nome, raca, preco, quantidade FROM peixes";
+
+            DataTable tabela = new DataTable();
+            tabela.Load(comando.ExecuteReader());
+
+            dgvPeixes.RowCount = 0;
+
+            for(int i = 0; i < tabela.Rows.Count; i++)
+            {
+                DataRow linha = tabela.Rows[i];
+                Peixe peixe = new Peixe();
+                peixe.Id = Convert.ToInt32(linha["id"]);
+                peixe.Nome = linha["nome"].ToString();
+                peixe.Raca = linha["raca"].ToString();
+                peixe.Preco = Convert.ToDecimal(linha["preco"]);
+                peixe.Quantidade = Convert.ToInt32(linha["quantidade"]);
+                dgvPeixes.Rows.Add(new string[] { peixe.Id.ToString(), peixe.Nome, peixe.Raca.ToString(), peixe.Preco.ToString(), peixe.Quantidade.ToString()});
+            }
+        }
     }
 }
