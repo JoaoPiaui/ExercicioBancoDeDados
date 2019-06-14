@@ -20,8 +20,14 @@ namespace Exercicio01
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            
+            if(lblId.Text == "0")
+            {
                 Inserir();
+            }
+            else
+            {
+                Alterar();
+            }
         }
 
         private void Inserir()
@@ -47,6 +53,35 @@ VALUES (@NOME, @PRECO, @RACA, @QUANTIDADE)";
             comando.Parameters.AddWithValue("@QUANTIDADE", peixe.Quantidade);
             comando.ExecuteNonQuery();
             MessageBox.Show("Registro criado com sucesso");
+            conexao.Close();
+        }
+
+        private void Alterar()
+        {
+            Peixe peixe = new Peixe();
+            peixe.Nome = txtNome.Text;
+            peixe.Raca = cbRaca.SelectedItem.ToString();
+            peixe.Preco = Convert.ToDecimal(mtbPreco.Text);
+            peixe.Quantidade = Convert.ToInt32(nudQuantidade.Value);
+
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\ExercicioBancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
+            conexao.Open();
+
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = conexao;
+            comando.CommandText = @"UPDATE peixes SET
+nome = @NOME,
+raca = @RACA,
+preco = @PRECO,
+quantidade = @QUANTIDADE
+WHERE id = @ID";
+            comando.Parameters.AddWithValue("@ID", peixe.Id);
+            comando.Parameters.AddWithValue("@NOME", peixe.Nome);
+            comando.Parameters.AddWithValue("@RACA", peixe.Raca);
+            comando.Parameters.AddWithValue("@PRECO", peixe.Preco);
+            comando.Parameters.AddWithValue("@QUANTIDADE", peixe.Quantidade);
+            comando.ExecuteNonQuery();
             conexao.Close();
         }
     }
