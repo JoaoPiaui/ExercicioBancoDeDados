@@ -20,7 +20,7 @@ namespace Exercicio01
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if(lblId.Text == "0")
+            if (lblId.Text == "0")
             {
                 Inserir();
             }
@@ -39,7 +39,7 @@ namespace Exercicio01
             peixe.Quantidade = Convert.ToInt32(nudQuantidade.Value);
 
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\ExercicioBancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
+            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\BancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
             conexao.Open();
 
             SqlCommand comando = new SqlCommand();
@@ -53,7 +53,10 @@ VALUES (@NOME, @PRECO, @RACA, @QUANTIDADE)";
             comando.Parameters.AddWithValue("@QUANTIDADE", peixe.Quantidade);
             comando.ExecuteNonQuery();
             MessageBox.Show("Registro criado com sucesso");
+
             conexao.Close();
+
+            AtualizaTabela();
         }
 
         private void Alterar()
@@ -65,7 +68,7 @@ VALUES (@NOME, @PRECO, @RACA, @QUANTIDADE)";
             peixe.Quantidade = Convert.ToInt32(nudQuantidade.Value);
 
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\ExercicioBancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
+            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\BancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
             conexao.Open();
 
             SqlCommand comando = new SqlCommand();
@@ -88,7 +91,7 @@ WHERE id = @ID";
         private void AtualizaTabela()
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = @"";
+            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\BancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
             conexao.Open();
 
             SqlCommand comando = new SqlCommand();
@@ -100,7 +103,7 @@ WHERE id = @ID";
 
             dgvPeixes.RowCount = 0;
 
-            for(int i = 0; i < tabela.Rows.Count; i++)
+            for (int i = 0; i < tabela.Rows.Count; i++)
             {
                 DataRow linha = tabela.Rows[i];
                 Peixe peixe = new Peixe();
@@ -109,8 +112,22 @@ WHERE id = @ID";
                 peixe.Raca = linha["raca"].ToString();
                 peixe.Preco = Convert.ToDecimal(linha["preco"]);
                 peixe.Quantidade = Convert.ToInt32(linha["quantidade"]);
-                dgvPeixes.Rows.Add(new string[] { peixe.Id.ToString(), peixe.Nome, peixe.Raca.ToString(), peixe.Preco.ToString(), peixe.Quantidade.ToString()});
+                dgvPeixes.Rows.Add(new string[] { peixe.Id.ToString(), peixe.Nome, peixe.Raca.ToString(), peixe.Preco.ToString(), peixe.Quantidade.ToString() });
             }
+            conexao.Close();
+        }
+
+        private void LimparCampos()
+        {
+            lblId.Text = "0";
+            txtNome.Clear();
+            cbRaca.SelectedIndex = -1;
+            mtbPreco.Clear();
+        }
+
+        private void FormPeixes_Activated(object sender, EventArgs e)
+        {
+
         }
     }
 }

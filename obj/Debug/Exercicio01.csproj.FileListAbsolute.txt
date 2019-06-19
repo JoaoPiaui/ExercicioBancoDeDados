@@ -9,3 +9,15 @@ C:\Users\Alunos\source\repos\Exercicio01\obj\Debug\Exercicio01.csproj.CoreCompil
 C:\Users\Alunos\source\repos\Exercicio01\obj\Debug\Exercicio01.exe
 C:\Users\Alunos\source\repos\Exercicio01\obj\Debug\Exercicio01.pdb
 C:\Users\Alunos\source\repos\Exercicio01\obj\Debug\Exercicio01.FormPeixes.resources
+T:\Documentos\GitHub\ExercicioBancoDeDados\bin\Debug\Exercicio01.exe.config
+T:\Documentos\GitHub\ExercicioBancoDeDados\bin\Debug\Exercicio01.exe
+T:\Documentos\GitHub\ExercicioBancoDeDados\bin\Debug\Exercicio01.pdb
+T:\Documentos\GitHub\ExercicioBancoDeDados\obj\Debug\Exercicio01.csprojAssemblyReference.cache
+T:\Documentos\GitHub\ExercicioBancoDeDados\obj\Debug\Exercicio01.FormPeixes.resources
+T:\Documentos\GitHub\ExercicioBancoDeDados\obj\Debug\Exercicio01.FormPrincipal.resources
+T:\Documentos\GitHub\ExercicioBancoDeDados\obj\Debug\Exercicio01.Properties.Resources.resources
+T:\Documentos\GitHub\ExercicioBancoDeDados\obj\Debug\Exercicio01.csproj.GenerateResource.cache
+T:\Documentos\GitHub\ExercicioBancoDeDados\obj\Debug\Exercicio01.csproj.CoreCompileInputs.cache
+T:\Documentos\GitHub\ExercicioBancoDeDados\obj\Debug\Exercicio01.exe
+T:\Documentos\GitHub\ExercicioBancoDeDados\obj\Debug\Exercicio01.pdb
+T:\Documentos\GitHub\ExercicioBancoDeDados\obj\Debug\Exercicio01.FormColaboradores.resources

@@ -242,6 +242,7 @@
             this.Controls.Add(this.lblCodigo);
             this.Name = "FormPeixes";
             this.Text = "FormPeixes";
+            this.Activated += new System.EventHandler(this.FormPeixes_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantidade)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeixes)).EndInit();
             this.ResumeLayout(false);

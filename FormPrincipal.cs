@@ -22,5 +22,11 @@ namespace Exercicio01
             FormPeixes form = new FormPeixes();
             form.Visible = true;
         }
+
+        private void btnColaboradores_Click(object sender, EventArgs e)
+        {
+            FormColaboradores form = new FormColaboradores();
+            form.Visible = true;
+        }
     }
 }
