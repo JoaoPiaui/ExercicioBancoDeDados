@@ -38,7 +38,14 @@ namespace Exercicio01
             colaboradores.Salario = Convert.ToDecimal(mtbSalario.Text);
             colaboradores.Sexo = cbSexo.SelectedItem.ToString();
             colaboradores.Cargo = cbCargo.SelectedItem.ToString();
-            colaboradores.Programador = rbProgramador.Checked;
+           if (ckbProgramador.Checked == true)
+            {
+                colaboradores.Programador = true;
+            }
+           else
+            {
+                colaboradores.Programador = false;
+            }
 
             SqlConnection conexao = new SqlConnection();
             conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\BancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
@@ -70,7 +77,7 @@ VALUES (@NOME, @CPF, @SALARIO, @SEXO, @CARGO, @PROGRAMADOR)";
             colaboradores.Salario = Convert.ToDecimal(mtbSalario.Text);
             colaboradores.Sexo = cbSexo.SelectedItem.ToString();
             colaboradores.Cargo = cbCargo.SelectedItem.ToString();
-            colaboradores.Programador = rbProgramador.Checked;
+            colaboradores.Programador = ckbProgramador.Checked;
 
             SqlConnection conexao = new SqlConnection();
             conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\BancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
@@ -104,7 +111,7 @@ WHERE id = @ID";
 
             SqlCommand comando = new SqlCommand();
             comando.Connection = conexao;
-            comando.CommandText = "@SELECT id, nome,cpf, salario, sexo,cargo, programador FROM colaboradores";
+            comando.CommandText = @"SELECT id, nome, cpf, salario, sexo, cargo, programador FROM colaboradores";
 
             DataTable tabela = new DataTable();
             tabela.Load(comando.ExecuteReader());
@@ -131,6 +138,8 @@ WHERE id = @ID";
 
         private void FormColaboradores_Activated(object sender, EventArgs e)
         {
+            AtualizarTabela();
         }
+
     }
 }

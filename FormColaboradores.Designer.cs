@@ -35,7 +35,6 @@
             this.lblSalario = new System.Windows.Forms.Label();
             this.lblSexo = new System.Windows.Forms.Label();
             this.lblCargo = new System.Windows.Forms.Label();
-            this.rbProgramador = new System.Windows.Forms.RadioButton();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.mtbCpf = new System.Windows.Forms.MaskedTextBox();
             this.mtbSalario = new System.Windows.Forms.MaskedTextBox();
@@ -51,6 +50,7 @@
             this.ColumnSexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnProgramador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ckbProgramador = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvColaboradores)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,17 +116,6 @@
             this.lblCargo.Size = new System.Drawing.Size(35, 13);
             this.lblCargo.TabIndex = 6;
             this.lblCargo.Text = "Cargo";
-            // 
-            // rbProgramador
-            // 
-            this.rbProgramador.AutoSize = true;
-            this.rbProgramador.Location = new System.Drawing.Point(15, 343);
-            this.rbProgramador.Name = "rbProgramador";
-            this.rbProgramador.Size = new System.Drawing.Size(85, 17);
-            this.rbProgramador.TabIndex = 7;
-            this.rbProgramador.TabStop = true;
-            this.rbProgramador.Text = "Programador";
-            this.rbProgramador.UseVisualStyleBackColor = true;
             // 
             // txtNome
             // 
@@ -253,11 +242,22 @@
             this.ColumnProgramador.Name = "ColumnProgramador";
             this.ColumnProgramador.ReadOnly = true;
             // 
+            // ckbProgramador
+            // 
+            this.ckbProgramador.AutoSize = true;
+            this.ckbProgramador.Location = new System.Drawing.Point(15, 332);
+            this.ckbProgramador.Name = "ckbProgramador";
+            this.ckbProgramador.Size = new System.Drawing.Size(86, 17);
+            this.ckbProgramador.TabIndex = 16;
+            this.ckbProgramador.Text = "Programador";
+            this.ckbProgramador.UseVisualStyleBackColor = true;
+            // 
             // FormColaboradores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ckbProgramador);
             this.Controls.Add(this.dgvColaboradores);
             this.Controls.Add(this.btnApagar);
             this.Controls.Add(this.btnSalvar);
@@ -266,7 +266,6 @@
             this.Controls.Add(this.mtbSalario);
             this.Controls.Add(this.mtbCpf);
             this.Controls.Add(this.txtNome);
-            this.Controls.Add(this.rbProgramador);
             this.Controls.Add(this.lblCargo);
             this.Controls.Add(this.lblSexo);
             this.Controls.Add(this.lblSalario);
@@ -292,7 +291,6 @@
         private System.Windows.Forms.Label lblSalario;
         private System.Windows.Forms.Label lblSexo;
         private System.Windows.Forms.Label lblCargo;
-        private System.Windows.Forms.RadioButton rbProgramador;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.MaskedTextBox mtbCpf;
         private System.Windows.Forms.MaskedTextBox mtbSalario;
@@ -308,5 +306,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSexo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCargo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProgramador;
+        private System.Windows.Forms.CheckBox ckbProgramador;
     }
 }

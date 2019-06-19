@@ -96,7 +96,7 @@ WHERE id = @ID";
 
             SqlCommand comando = new SqlCommand();
             comando.Connection = conexao;
-            comando.CommandText = "@SELECT id, nome, raca, preco, quantidade FROM peixes";
+            comando.CommandText = @"SELECT id, nome, raca, preco, quantidade FROM peixes";
 
             DataTable tabela = new DataTable();
             tabela.Load(comando.ExecuteReader());
@@ -127,7 +127,7 @@ WHERE id = @ID";
 
         private void FormPeixes_Activated(object sender, EventArgs e)
         {
-
+            AtualizaTabela();
         }
     }
 }
