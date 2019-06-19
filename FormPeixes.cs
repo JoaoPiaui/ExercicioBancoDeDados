@@ -85,6 +85,7 @@ WHERE id = @ID";
             comando.Parameters.AddWithValue("@PRECO", peixe.Preco);
             comando.Parameters.AddWithValue("@QUANTIDADE", peixe.Quantidade);
             comando.ExecuteNonQuery();
+            AtualizaTabela();
             conexao.Close();
         }
 
@@ -127,6 +128,35 @@ WHERE id = @ID";
 
         private void FormPeixes_Activated(object sender, EventArgs e)
         {
+            AtualizaTabela();
+        }
+
+        private void btnApagar_Click(object sender, EventArgs e)
+        {
+            if (dgvPeixes.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Realize um cadastro ");
+                return;
+            }
+            if (dgvPeixes.SelectedRows.Count < 0)
+            {
+                MessageBox.Show("Selecione o registro que deseja apagar");
+                return;
+            }
+
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\BancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
+            conexao.Open();
+
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = conexao;
+            comando.CommandText = @"DELETE FROM carros WHERE id = @ID";
+
+            int id = Convert.ToInt32(dgvPeixes.CurrentRow.Cells[0].Value);
+            comando.Parameters.AddWithValue("@ID", id);
+            comando.ExecuteNonQuery();
+
+            conexao.Close();
             AtualizaTabela();
         }
     }

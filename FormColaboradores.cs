@@ -65,7 +65,7 @@ VALUES (@NOME, @CPF, @SALARIO, @SEXO, @CARGO, @PROGRAMADOR)";
 
             comando.ExecuteNonQuery();
             MessageBox.Show("Registro criado com sucesso");
-
+            AtualizarTabela();
             conexao.Close();
         }
 
@@ -100,6 +100,7 @@ WHERE id = @ID";
             comando.Parameters.AddWithValue("@CARGO",colaboradores.Cargo);
             comando.Parameters.AddWithValue("@PROGRAMADOR",colaboradores.Programador);
             comando.ExecuteNonQuery();
+            AtualizarTabela();
             conexao.Close();
         }
 
