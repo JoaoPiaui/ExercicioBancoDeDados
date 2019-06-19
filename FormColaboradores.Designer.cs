@@ -276,6 +276,7 @@
             this.Controls.Add(this.lblCodigo);
             this.Name = "FormColaboradores";
             this.Text = " ";
+            this.Activated += new System.EventHandler(this.FormColaboradores_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dgvColaboradores)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

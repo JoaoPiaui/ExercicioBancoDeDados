@@ -20,7 +20,14 @@ namespace Exercicio01
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            if(lblId.Text == "0")
+            {
             Inserir();
+            }
+            else
+            {
+                Alterar();
+            }
         }
 
         private void Inserir()
@@ -87,6 +94,43 @@ WHERE id = @ID";
             comando.Parameters.AddWithValue("@PROGRAMADOR",colaboradores.Programador);
             comando.ExecuteNonQuery();
             conexao.Close();
+        }
+
+        private void AtualizarTabela()
+        {
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\BancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
+            conexao.Open();
+
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = conexao;
+            comando.CommandText = "@SELECT id, nome,cpf, salario, sexo,cargo, programador FROM colaboradores";
+
+            DataTable tabela = new DataTable();
+            tabela.Load(comando.ExecuteReader());
+
+            dgvColaboradores.RowCount = 0;
+
+            for(int i = 0; i < tabela.Rows.Count; i++)
+            {
+                DataRow linha = tabela.Rows[i];
+                Colaborador colaboradores = new Colaborador();
+                colaboradores.Id = Convert.ToInt32(linha["id"]);
+                colaboradores.Nome = linha["nome"].ToString();
+                colaboradores.Cpf = linha["cpf"].ToString();
+                colaboradores.Salario = Convert.ToDecimal(linha["salario"]);
+                colaboradores.Sexo = linha["sexo"].ToString();
+                colaboradores.Cargo = linha["cargo"].ToString();
+                colaboradores.Programador = Convert.ToBoolean(linha["programador"]);
+                dgvColaboradores.Rows.Add(new string[] { colaboradores.Id.ToString(), colaboradores.Nome, colaboradores.Cpf.ToString(), colaboradores.Salario.ToString(), colaboradores.Sexo.ToString(), colaboradores.Cargo.ToString(), colaboradores.Programador.ToString()});
+            }
+
+            conexao.Close();
+
+        }
+
+        private void FormColaboradores_Activated(object sender, EventArgs e)
+        {
         }
     }
 }
