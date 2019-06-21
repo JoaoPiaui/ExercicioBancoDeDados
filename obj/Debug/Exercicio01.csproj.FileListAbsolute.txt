@@ -21,3 +21,15 @@ T:\Documentos\GitHub\ExercicioBancoDeDados\obj\Debug\Exercicio01.csproj.CoreComp
 T:\Documentos\GitHub\ExercicioBancoDeDados\obj\Debug\Exercicio01.exe
 T:\Documentos\GitHub\ExercicioBancoDeDados\obj\Debug\Exercicio01.pdb
 T:\Documentos\GitHub\ExercicioBancoDeDados\obj\Debug\Exercicio01.FormColaboradores.resources
+C:\Users\bianc\Desktop\JV\ExercicioBancoDeDados\bin\Debug\Exercicio01.exe.config
+C:\Users\bianc\Desktop\JV\ExercicioBancoDeDados\bin\Debug\Exercicio01.exe
+C:\Users\bianc\Desktop\JV\ExercicioBancoDeDados\bin\Debug\Exercicio01.pdb
+C:\Users\bianc\Desktop\JV\ExercicioBancoDeDados\obj\Debug\Exercicio01.csprojAssemblyReference.cache
+C:\Users\bianc\Desktop\JV\ExercicioBancoDeDados\obj\Debug\Exercicio01.FormColaboradores.resources
+C:\Users\bianc\Desktop\JV\ExercicioBancoDeDados\obj\Debug\Exercicio01.FormPeixes.resources
+C:\Users\bianc\Desktop\JV\ExercicioBancoDeDados\obj\Debug\Exercicio01.FormPrincipal.resources
+C:\Users\bianc\Desktop\JV\ExercicioBancoDeDados\obj\Debug\Exercicio01.Properties.Resources.resources
+C:\Users\bianc\Desktop\JV\ExercicioBancoDeDados\obj\Debug\Exercicio01.csproj.GenerateResource.cache
+C:\Users\bianc\Desktop\JV\ExercicioBancoDeDados\obj\Debug\Exercicio01.csproj.CoreCompileInputs.cache
+C:\Users\bianc\Desktop\JV\ExercicioBancoDeDados\obj\Debug\Exercicio01.exe
+C:\Users\bianc\Desktop\JV\ExercicioBancoDeDados\obj\Debug\Exercicio01.pdb

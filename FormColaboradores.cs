@@ -20,9 +20,9 @@ namespace Exercicio01
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if(lblId.Text == "0")
+            if (lblId.Text == "0")
             {
-            Inserir();
+                Inserir();
             }
             else
             {
@@ -38,17 +38,17 @@ namespace Exercicio01
             colaboradores.Salario = Convert.ToDecimal(mtbSalario.Text);
             colaboradores.Sexo = cbSexo.SelectedItem.ToString();
             colaboradores.Cargo = cbCargo.SelectedItem.ToString();
-           if (ckbProgramador.Checked == true)
+            if (ckbProgramador.Checked == true)
             {
                 colaboradores.Programador = true;
             }
-           else
+            else
             {
                 colaboradores.Programador = false;
             }
 
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\BancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
+            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\bianc\Documents\bancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
             conexao.Open();
 
             SqlCommand comando = new SqlCommand();
@@ -80,7 +80,7 @@ VALUES (@NOME, @CPF, @SALARIO, @SEXO, @CARGO, @PROGRAMADOR)";
             colaboradores.Programador = ckbProgramador.Checked;
 
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\BancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
+            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\bianc\Documents\bancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
             conexao.Open();
 
             SqlCommand comando = new SqlCommand();
@@ -93,12 +93,13 @@ sexo = @SEXO,
 cargo = @CARGO,
 programador = @PROGRAMADOR
 WHERE id = @ID";
-            comando.Parameters.AddWithValue("@ID",colaboradores.Id);
-            comando.Parameters.AddWithValue("@NOME",colaboradores.Nome);
-            comando.Parameters.AddWithValue("@CPF",colaboradores.Cpf);
-            comando.Parameters.AddWithValue("@SALARIO",colaboradores.Sexo);
-            comando.Parameters.AddWithValue("@CARGO",colaboradores.Cargo);
-            comando.Parameters.AddWithValue("@PROGRAMADOR",colaboradores.Programador);
+            comando.Parameters.AddWithValue("@ID", colaboradores.Id);
+            comando.Parameters.AddWithValue("@NOME", colaboradores.Nome);
+            comando.Parameters.AddWithValue("@CPF", colaboradores.Cpf);
+            comando.Parameters.AddWithValue("@SALARIO", colaboradores.Salario);
+            comando.Parameters.AddWithValue("@SEXO", colaboradores.Sexo);
+            comando.Parameters.AddWithValue("@CARGO", colaboradores.Cargo);
+            comando.Parameters.AddWithValue("@PROGRAMADOR", colaboradores.Programador);
             comando.ExecuteNonQuery();
             AtualizarTabela();
             conexao.Close();
@@ -107,7 +108,7 @@ WHERE id = @ID";
         private void AtualizarTabela()
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\BancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
+            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\bianc\Documents\bancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
             conexao.Open();
 
             SqlCommand comando = new SqlCommand();
@@ -119,7 +120,7 @@ WHERE id = @ID";
 
             dgvColaboradores.RowCount = 0;
 
-            for(int i = 0; i < tabela.Rows.Count; i++)
+            for (int i = 0; i < tabela.Rows.Count; i++)
             {
                 DataRow linha = tabela.Rows[i];
                 Colaborador colaboradores = new Colaborador();
@@ -130,7 +131,7 @@ WHERE id = @ID";
                 colaboradores.Sexo = linha["sexo"].ToString();
                 colaboradores.Cargo = linha["cargo"].ToString();
                 colaboradores.Programador = Convert.ToBoolean(linha["programador"]);
-                dgvColaboradores.Rows.Add(new string[] { colaboradores.Id.ToString(), colaboradores.Nome, colaboradores.Cpf.ToString(), colaboradores.Salario.ToString(), colaboradores.Sexo.ToString(), colaboradores.Cargo.ToString(), colaboradores.Programador.ToString()});
+                dgvColaboradores.Rows.Add(new string[] { colaboradores.Id.ToString(), colaboradores.Nome, colaboradores.Cpf.ToString(), colaboradores.Salario.ToString(), colaboradores.Sexo.ToString(), colaboradores.Cargo.ToString(), colaboradores.Programador.ToString() });
             }
 
             conexao.Close();
@@ -142,5 +143,39 @@ WHERE id = @ID";
             AtualizarTabela();
         }
 
+        private void dgvColaboradores_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = Convert.ToInt32(dgvColaboradores.CurrentRow.Cells[0].Value);
+
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\bianc\Documents\bancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
+            conexao.Open();
+
+            SqlCommand comando = new SqlCommand();
+            comando.CommandText = @"SELECT id, nome, cpf, salario, sexo, cargo, programador FROM colaboradores";
+            comando.Connection = conexao;
+
+            DataTable tabela = new DataTable();
+            tabela.Load(comando.ExecuteReader());
+            DataRow linha = tabela.Rows[0];
+            Colaborador colaboradores = new Colaborador();
+            colaboradores.Id = Convert.ToInt32(linha["id"]);
+            colaboradores.Nome = linha["nome"].ToString();
+            colaboradores.Cpf = linha["cpf"].ToString();
+            colaboradores.Salario = Convert.ToDecimal(linha["salario"]);
+            colaboradores.Sexo = linha["sexo"].ToString();
+            colaboradores.Cargo = linha["cargo"].ToString();
+            colaboradores.Programador = Convert.ToBoolean(linha["programador"]);
+
+            lblId.Text = colaboradores.Id.ToString();
+            txtNome.Text = colaboradores.Nome;
+            mtbCpf.Text = colaboradores.Cpf.ToString();
+            mtbSalario.Text = colaboradores.Salario.ToString();
+            cbSexo.Text = colaboradores.Sexo;
+            cbCargo.Text = colaboradores.Cargo;
+            ckbProgramador.Text = colaboradores.Programador.ToString();
+
+            conexao.Close();
+        }
     }
 }

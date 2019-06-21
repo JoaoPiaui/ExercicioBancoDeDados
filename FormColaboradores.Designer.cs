@@ -199,6 +199,7 @@
             this.dgvColaboradores.ReadOnly = true;
             this.dgvColaboradores.Size = new System.Drawing.Size(421, 287);
             this.dgvColaboradores.TabIndex = 15;
+            this.dgvColaboradores.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvColaboradores_CellDoubleClick);
             // 
             // ColumnId
             // 

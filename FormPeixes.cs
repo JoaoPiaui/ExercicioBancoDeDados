@@ -39,7 +39,7 @@ namespace Exercicio01
             peixe.Quantidade = Convert.ToInt32(nudQuantidade.Value);
 
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\BancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
+            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\bianc\Documents\bancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
             conexao.Open();
 
             SqlCommand comando = new SqlCommand();
@@ -68,7 +68,7 @@ VALUES (@NOME, @PRECO, @RACA, @QUANTIDADE)";
             peixe.Quantidade = Convert.ToInt32(nudQuantidade.Value);
 
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\BancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
+            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\bianc\Documents\bancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
             conexao.Open();
 
             SqlCommand comando = new SqlCommand();
@@ -92,7 +92,7 @@ WHERE id = @ID";
         private void AtualizaTabela()
         {
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\BancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
+            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\bianc\Documents\bancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
             conexao.Open();
 
             SqlCommand comando = new SqlCommand();
@@ -145,12 +145,12 @@ WHERE id = @ID";
             }
 
             SqlConnection conexao = new SqlConnection();
-            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=T:\Documentos\BancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
+            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\bianc\Documents\bancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
             conexao.Open();
 
             SqlCommand comando = new SqlCommand();
             comando.Connection = conexao;
-            comando.CommandText = @"DELETE FROM carros WHERE id = @ID";
+            comando.CommandText = @"DELETE FROM peixes WHERE id = @ID";
 
             int id = Convert.ToInt32(dgvPeixes.CurrentRow.Cells[0].Value);
             comando.Parameters.AddWithValue("@ID", id);
@@ -158,6 +158,39 @@ WHERE id = @ID";
 
             conexao.Close();
             AtualizaTabela();
+        }
+
+        private void dgvPeixes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = Convert.ToInt32(dgvPeixes.CurrentRow.Cells[0].Value);
+
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\bianc\Documents\bancoDeDados.mdf;Integrated Security=True;Connect Timeout=30";
+            conexao.Open();
+
+            SqlCommand comando = new SqlCommand();
+            comando.CommandText = @"SELECT id, nome, raca, preco, quantidade FROM peixes";
+            comando.Connection = conexao;
+
+            DataTable tabela = new DataTable();
+            tabela.Load(comando.ExecuteReader());
+            DataRow linha = tabela.Rows[0];
+            Peixe peixe = new Peixe();
+            peixe.Id = Convert.ToInt32(linha["id"]);
+            peixe.Nome = linha["nome"].ToString();
+            peixe.Raca = linha["raca"].ToString();
+            peixe.Preco = Convert.ToDecimal(linha["preco"]);
+            peixe.Quantidade = Convert.ToInt32(linha["quantidade"]);
+
+            lblId.Text = peixe.Id.ToString();
+            txtNome.Text = peixe.Nome;
+            cbRaca.Text = peixe.Raca;
+            mtbPreco.Text = peixe.Preco.ToString();
+            nudQuantidade.Text = peixe.Quantidade.ToString();
+
+            conexao.Close();
+
+
         }
     }
 }

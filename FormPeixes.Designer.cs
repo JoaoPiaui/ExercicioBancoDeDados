@@ -172,6 +172,7 @@
             this.dgvPeixes.ReadOnly = true;
             this.dgvPeixes.Size = new System.Drawing.Size(544, 262);
             this.dgvPeixes.TabIndex = 10;
+            this.dgvPeixes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPeixes_CellDoubleClick);
             // 
             // ColumnId
             // 
